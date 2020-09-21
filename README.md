@@ -17,7 +17,7 @@ Okja adalah sebuah web application yang digunakan untuk membantu management bisn
 ## Step by Step Persiapan development
 
 - Clone github repository ke local PC didalam folder local server
-- setting virtual host di [C:\xampp\apache\conf\extra]
+- setting virtual host di [C:\xampp\apache\conf\extra\httpd-vhosts.conf]
 ```text
 <VirtualHost *:80>
     ServerName okja.local
