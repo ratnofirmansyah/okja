@@ -1615,26 +1615,41 @@ class OkjaSeeder extends Seeder
             ),
         ));
 
-		\DB::table('roles')->delete();
-        
-        \DB::table('roles')->insert(array (
-            0 => 
-            array (
-                'id' => 1,
-                'name' => 'admin',
-                'display_name' => 'Administrator',
-                'created_at' => '2020-09-21 14:24:29',
-                'updated_at' => '2020-09-21 14:24:29',
-            ),
-            1 => 
-            array (
-                'id' => 2,
-                'name' => 'user',
-                'display_name' => 'Normal User',
-                'created_at' => '2020-09-21 14:24:29',
-                'updated_at' => '2020-09-21 14:24:29',
-            ),
-        ));
+        if (!\DB::table('roles')->where('id', '1')->first()) {
+            \DB::table('roles')->insert(
+                [
+                    'id' => 1,
+                    'name' => 'admin',
+                    'display_name' => 'Administrator',
+                    'created_at' => '2020-09-21 14:24:29',
+                    'updated_at' => '2020-09-21 14:24:29',
+                ]
+            );
+        }
+
+        if (!\DB::table('roles')->where('id', '2')->first()) {
+            \DB::table('roles')->insert(
+                [
+                    'id' => 2,
+                    'name' => 'user',
+                    'display_name' => 'Normal User',
+                    'created_at' => '2020-09-21 14:24:29',
+                    'updated_at' => '2020-09-21 14:24:29',
+                ]
+            );
+        }
+
+        if (!\DB::table('roles')->where('id', '3')->first()) {
+            \DB::table('roles')->insert(
+                [
+                    'id' => 3,
+                    'name' => 'brand',
+                    'display_name' => 'Brand Admin',
+                    'created_at' => '2020-09-21 14:24:29',
+                    'updated_at' => '2020-09-21 14:24:29',
+                ]
+            );
+        }
 
         \DB::table('permission_role')->delete();
         
