@@ -189,3 +189,13 @@ table users {
   updated_at timestamp
   deleted_at timestamp
 }
+
+table faqs {
+  id bigint [pk, increment]
+  uuid string
+  question text
+  answer text
+  created_at timestamp
+  updated_at timestamp
+  deleted_at timestamp
+}
