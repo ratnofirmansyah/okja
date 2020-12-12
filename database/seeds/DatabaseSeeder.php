@@ -21,5 +21,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionRoleTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
         $this->call(SettingsTableSeeder::class);
+        $this->call(OkjaSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
+        $this->call(BrandsTableSeeder::class);
+        $this->call(OutletsTableSeeder::class);
     }
 }
