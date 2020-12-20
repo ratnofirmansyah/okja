@@ -192,9 +192,19 @@ table users {
 
 table faqs {
   id bigint [pk, increment]
-  uuid string
   question text
   answer text
+  created_at timestamp
+  updated_at timestamp
+  deleted_at timestamp
+}
+
+table user_transaction_histories {
+  id bigint [pk, increment]
+  product_id bigint [ref: > products.id]
+  user_id bigint [ref: > users.id]
+  qty integer
+  note text [null]
   created_at timestamp
   updated_at timestamp
   deleted_at timestamp
