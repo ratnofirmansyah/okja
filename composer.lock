@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e7d7cf91028ef128ea9029a9bb7f746e",
+    "content-hash": "baf71ca2e55faa749884178298bd4e9f",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -2639,16 +2639,16 @@
         },
         {
             "name": "orangehill/iseed",
-            "version": "v2.6.4",
+            "version": "v3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orangehill/iseed.git",
-                "reference": "03c73d3f829a74065e14a757f0d749ad4928a15f"
+                "reference": "a6c54d2ed9ee0adad46ca7d0c38ffe5a56bd98c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orangehill/iseed/zipball/03c73d3f829a74065e14a757f0d749ad4928a15f",
-                "reference": "03c73d3f829a74065e14a757f0d749ad4928a15f",
+                "url": "https://api.github.com/repos/orangehill/iseed/zipball/a6c54d2ed9ee0adad46ca7d0c38ffe5a56bd98c9",
+                "reference": "a6c54d2ed9ee0adad46ca7d0c38ffe5a56bd98c9",
                 "shasum": ""
             },
             "require": {
@@ -2694,7 +2694,7 @@
                 "laravel",
                 "seed"
             ],
-            "time": "2020-09-10T06:25:21+00:00"
+            "time": "2020-12-14T11:29:13+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -6380,6 +6380,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {
