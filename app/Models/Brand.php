@@ -10,4 +10,15 @@ class Brand extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    protected $table = 'brands';
+    public $timestamps = true;
+
+    protected $fillable = [
+        'name',
+        'avatar',
+        'url'
+    ];
+
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 }
