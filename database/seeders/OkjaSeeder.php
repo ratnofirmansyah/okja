@@ -104,7 +104,7 @@ class OkjaSeeder extends Seeder
                 'server_side' => 1,
                 'details' => '{"order_column":"id","order_display_column":"updated_at","order_direction":"asc","default_search_key":"name","scope":null}',
                 'created_at' => '2020-10-03 05:14:01',
-                'updated_at' => '2020-10-03 05:16:26',
+                'updated_at' => '2020-12-23 21:00:27',
             ),
             5 => 
             array (
@@ -158,7 +158,7 @@ class OkjaSeeder extends Seeder
                 'server_side' => 1,
                 'details' => '{"order_column":"created_at","order_display_column":"created_at","order_direction":"desc","default_search_key":"product_id","scope":null}',
                 'created_at' => '2020-12-19 07:25:01',
-                'updated_at' => '2020-12-20 06:45:41',
+                'updated_at' => '2020-12-24 13:23:08',
             ),
             8 => 
             array (
@@ -588,8 +588,8 @@ class OkjaSeeder extends Seeder
                 'id' => 29,
                 'data_type_id' => 8,
                 'field' => 'brand_id',
-                'type' => 'text',
-                'display_name' => 'Brand Id',
+                'type' => 'select_dropdown',
+                'display_name' => 'Brand',
                 'required' => 1,
                 'browse' => 1,
                 'read' => 1,
@@ -701,7 +701,7 @@ class OkjaSeeder extends Seeder
                 'data_type_id' => 8,
                 'field' => 'outlet_belongsto_brand_relationship',
                 'type' => 'relationship',
-                'display_name' => 'brands',
+                'display_name' => 'Brand',
                 'required' => 0,
                 'browse' => 1,
                 'read' => 1,
@@ -1013,7 +1013,7 @@ class OkjaSeeder extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{}',
-                'order' => 2,
+                'order' => 4,
             ),
             52 => 
             array (
@@ -1022,14 +1022,14 @@ class OkjaSeeder extends Seeder
                 'field' => 'user_id',
                 'type' => 'text',
                 'display_name' => 'User',
-                'required' => 1,
+                'required' => 0,
                 'browse' => 1,
                 'read' => 1,
                 'edit' => 0,
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 4,
+                'order' => 6,
             ),
             53 => 
             array (
@@ -1045,7 +1045,7 @@ class OkjaSeeder extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{}',
-                'order' => 6,
+                'order' => 8,
             ),
             54 => 
             array (
@@ -1061,7 +1061,7 @@ class OkjaSeeder extends Seeder
                 'add' => 1,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 7,
+                'order' => 9,
             ),
             55 => 
             array (
@@ -1077,7 +1077,7 @@ class OkjaSeeder extends Seeder
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 8,
+                'order' => 10,
             ),
             56 => 
             array (
@@ -1093,7 +1093,7 @@ class OkjaSeeder extends Seeder
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 9,
+                'order' => 11,
             ),
             57 => 
             array (
@@ -1109,7 +1109,7 @@ class OkjaSeeder extends Seeder
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 10,
+                'order' => 12,
             ),
             58 => 
             array (
@@ -1221,7 +1221,7 @@ class OkjaSeeder extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"model":"App\\\\Models\\\\Product","table":"products","type":"belongsTo","column":"product_id","key":"id","label":"name","pivot_table":"brands","pivot":"0","taggable":"0"}',
-                'order' => 3,
+                'order' => 5,
             ),
             65 => 
             array (
@@ -1237,7 +1237,7 @@ class OkjaSeeder extends Seeder
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{"model":"App\\\\Models\\\\User","table":"users","type":"belongsTo","column":"user_id","key":"id","label":"name","pivot_table":"brands","pivot":"0","taggable":"0"}',
-                'order' => 5,
+                'order' => 7,
             ),
             66 => 
             array (
@@ -1365,6 +1365,54 @@ class OkjaSeeder extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"model":"App\\\\Models\\\\Brand","table":"brands","type":"belongsTo","column":"brand_id","key":"id","label":"name","pivot_table":"brands","pivot":"0","taggable":"0"}',
+                'order' => 10,
+            ),
+            74 => 
+            array (
+                'id' => 94,
+                'data_type_id' => 14,
+                'field' => 'outlet_id',
+                'type' => 'select_dropdown',
+                'display_name' => 'Outlet Id',
+                'required' => 0,
+                'browse' => 1,
+                'read' => 1,
+                'edit' => 1,
+                'add' => 1,
+                'delete' => 1,
+                'details' => '{}',
+                'order' => 2,
+            ),
+            75 => 
+            array (
+                'id' => 95,
+                'data_type_id' => 14,
+                'field' => 'user_transaction_history_belongsto_outlet_relationship',
+                'type' => 'relationship',
+                'display_name' => 'Outlet',
+                'required' => 0,
+                'browse' => 1,
+                'read' => 1,
+                'edit' => 1,
+                'add' => 1,
+                'delete' => 1,
+                'details' => '{"model":"App\\\\Models\\\\Outlet","table":"outlets","type":"belongsTo","column":"outlet_id","key":"id","label":"name","pivot_table":"brands","pivot":"0","taggable":"0"}',
+                'order' => 3,
+            ),
+            76 => 
+            array (
+                'id' => 96,
+                'data_type_id' => 8,
+                'field' => 'deleted_at',
+                'type' => 'timestamp',
+                'display_name' => 'Deleted At',
+                'required' => 0,
+                'browse' => 0,
+                'read' => 0,
+                'edit' => 0,
+                'add' => 0,
+                'delete' => 0,
+                'details' => '{}',
                 'order' => 10,
             ),
         ));
@@ -2452,45 +2500,70 @@ class OkjaSeeder extends Seeder
             ),
             64 => 
             array (
-                'permission_id' => 58,
-                'role_id' => 1,
+                'permission_id' => 57,
+                'role_id' => 3,
             ),
             65 => 
             array (
-                'permission_id' => 59,
+                'permission_id' => 58,
                 'role_id' => 1,
             ),
             66 => 
             array (
-                'permission_id' => 60,
-                'role_id' => 1,
+                'permission_id' => 58,
+                'role_id' => 3,
             ),
             67 => 
             array (
-                'permission_id' => 61,
+                'permission_id' => 59,
                 'role_id' => 1,
             ),
             68 => 
             array (
-                'permission_id' => 62,
-                'role_id' => 1,
+                'permission_id' => 59,
+                'role_id' => 3,
             ),
             69 => 
             array (
-                'permission_id' => 63,
+                'permission_id' => 60,
                 'role_id' => 1,
             ),
             70 => 
             array (
+                'permission_id' => 60,
+                'role_id' => 3,
+            ),
+            71 => 
+            array (
+                'permission_id' => 61,
+                'role_id' => 1,
+            ),
+            72 => 
+            array (
+                'permission_id' => 61,
+                'role_id' => 3,
+            ),
+            73 => 
+            array (
+                'permission_id' => 62,
+                'role_id' => 1,
+            ),
+            74 => 
+            array (
+                'permission_id' => 63,
+                'role_id' => 1,
+            ),
+            75 => 
+            array (
                 'permission_id' => 64,
                 'role_id' => 1,
             ),
-            71 => 
+            76 => 
             array (
                 'permission_id' => 65,
                 'role_id' => 1,
             ),
-            72 => 
+            77 => 
             array (
                 'permission_id' => 66,
                 'role_id' => 1,
