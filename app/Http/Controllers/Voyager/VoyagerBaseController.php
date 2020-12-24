@@ -249,10 +249,10 @@ class VoyagerBaseController extends BaseVoyagerBaseController
             $isBrandAdmin = auth()->user()->hasRole('brand');
             if ($isBrandAdmin) {
                 $dataTypeContent->outlets = Outlet::select('id', 'name')->where('brand_id', auth()->user()->brand_id)->get();
-                $dataTypeContent->products = Product::select('id', 'name')->where('outlet_id', $dataTypeContent->outlet_id)->get();
             }else{
                 $dataTypeContent->outlets = Outlet::select('id', 'name')->get();
             }
+            $dataTypeContent->products = Product::select('id', 'name')->where('outlet_id', $dataTypeContent->outlet_id)->get();
         }
 
         // If a column has a relationship associated with it, we do not want to show that field
