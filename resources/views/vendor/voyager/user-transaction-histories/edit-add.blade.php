@@ -87,7 +87,7 @@
                                             <option value="">--CHOOSE--</option>
                                             @if(!is_null($dataTypeContent->products))
                                                 @foreach($dataTypeContent->products as $product)
-                                                    <option value="{{$product->id}}" @if(!is_null($dataTypeContent->product_id) && $dataTypeContent->outlet_id==$product->id) selected @endif>{{$product->name}}</option>
+                                                    <option value="{{$product->id}}" @if(!is_null($dataTypeContent->product_id) && $dataTypeContent->product_id==$product->id) selected @endif>{{$product->name}}</option>
                                                 @endforeach
                                             @endif
                                         </select>
