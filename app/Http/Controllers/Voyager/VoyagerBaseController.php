@@ -17,6 +17,7 @@ use TCG\Voyager\Events\BreadImagesDeleted;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use App\Models\Outlet;
+use App\Models\Product;
 
 class VoyagerBaseController extends BaseVoyagerBaseController
 {
@@ -244,6 +245,16 @@ class VoyagerBaseController extends BaseVoyagerBaseController
             $dataType->editRows[$key]['col_width'] = isset($row->details->width) ? $row->details->width : 100;
         }
 
+        if ($slug == 'user-transaction-histories') {
+            $isBrandAdmin = auth()->user()->hasRole('brand');
+            if ($isBrandAdmin) {
+                $dataTypeContent->outlets = Outlet::select('id', 'name')->where('brand_id', auth()->user()->brand_id)->get();
+                $dataTypeContent->products = Product::select('id', 'name')->where('outlet_id', $dataTypeContent->outlet_id)->get();
+            }else{
+                $dataTypeContent->outlets = Outlet::select('id', 'name')->get();
+            }
+        }
+
         // If a column has a relationship associated with it, we do not want to show that field
         $this->removeRelationshipField($dataType, 'edit');
 
@@ -343,6 +354,15 @@ class VoyagerBaseController extends BaseVoyagerBaseController
             $dataType->addRows[$key]['col_width'] = $row->details->width ?? 100;
         }
 
+        if ($slug == 'user-transaction-histories') {
+            $isBrandAdmin = auth()->user()->hasRole('brand');
+            if ($isBrandAdmin) {
+                $dataTypeContent->outlets = Outlet::select('id', 'name')->where('brand_id', auth()->user()->brand_id)->get();
+            }else{
+                $dataTypeContent->outlets = Outlet::select('id', 'name')->get();
+            }
+        }
+
         // If a column has a relationship associated with it, we do not want to show that field
         $this->removeRelationshipField($dataType, 'add');
 
@@ -385,6 +405,11 @@ class VoyagerBaseController extends BaseVoyagerBaseController
 
         if ($slug == 'products') {
             $data->qty_total += $request->qty_balance;
+            $data->save();
+        }
+
+        if ($slug == 'user-transaction-histories') {
+            $data->user_id = auth()->user()->id;
             $data->save();
         }
 
