@@ -24,14 +24,24 @@ class UserTransactionHistoryObserver
     }
 
     /**
-     * Handle the user transaction history "updated" event.
+     * Handle the user transaction history "updating" event.
      *
      * @param  \App\Models\UserTransactionHistory  $userTransactionHistory
      * @return void
      */
-    public function updated(UserTransactionHistory $userTransactionHistory)
+    public function updating(UserTransactionHistory $userTransactionHistory)
     {
-        //
+        $userTransactionHistoryPrevious = UserTransactionHistory::find($userTransactionHistory->id);
+        \Log::error($userTransactionHistoryPrevious->qty);
+        \Log::error($userTransactionHistory->qty);
+        \Log::error($userTransactionHistory->qty);
+        $currentQty = intval($userTransactionHistory->qty) - intval($userTransactionHistoryPrevious->qty);
+        $deductProductQty = Product::find($userTransactionHistory->product_id);
+        $deductProductQty->qty_balance -= $currentQty;
+        if ($deductProductQty->qty_balance < 0) {
+            $deductProductQty->qty_balance = 0;
+        }
+        $deductProductQty->save();
     }
 
     /**
@@ -42,28 +52,11 @@ class UserTransactionHistoryObserver
      */
     public function deleted(UserTransactionHistory $userTransactionHistory)
     {
-        //
-    }
-
-    /**
-     * Handle the user transaction history "restored" event.
-     *
-     * @param  \App\Models\UserTransactionHistory  $userTransactionHistory
-     * @return void
-     */
-    public function restored(UserTransactionHistory $userTransactionHistory)
-    {
-        //
-    }
-
-    /**
-     * Handle the user transaction history "force deleted" event.
-     *
-     * @param  \App\Models\UserTransactionHistory  $userTransactionHistory
-     * @return void
-     */
-    public function forceDeleted(UserTransactionHistory $userTransactionHistory)
-    {
-        //
+        $deductProductQty = Product::find($userTransactionHistory->product_id);
+        $deductProductQty->qty_balance += $userTransactionHistory->qty;
+        if ($deductProductQty->qty_balance < 0) {
+            $deductProductQty->qty_balance = 0;
+        }
+        $deductProductQty->save();
     }
 }
