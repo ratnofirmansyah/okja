@@ -12,30 +12,23 @@ class User extends \TCG\Voyager\Models\User
     use SoftDeletes;
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'role_id', 'brand_id', 'name', 'email', 'password',
+        'role_id', 'brand_id', 'outlet_id', 'name', 'email', 'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function brand() {
+        return $this->belongsTo('App\Models\Brand')->withTrashed();
+    }
+
+    public function outlet() {
+        return $this->belongsTo('App\Models\Outlet')->withTrashed();
+    }
 }
