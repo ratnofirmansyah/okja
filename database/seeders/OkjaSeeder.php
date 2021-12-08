@@ -2288,7 +2288,24 @@ class OkjaSeeder extends Seeder
         }
 
         if (!\DB::table('roles')->where('id', '2')->first()) {
-            \DB::table('roles')->where('id', '2')->delete();
+            \DB::table('roles')->insert(
+                [
+                    'id' => 2,
+                    'name' => 'outlet',
+                    'display_name' => 'Outlet Staff',
+                    'created_at' => '2021-12-03 14:25:33',
+                    'updated_at' => '2021-12-03 14:47:10',
+                ]
+            );
+        }else{
+            \DB::table('roles')->where('id', 2)->update(
+                [
+                    'name' => 'outlet',
+                    'display_name' => 'Outlet Staff',
+                    'created_at' => '2021-12-03 14:25:33',
+                    'updated_at' => '2021-12-03 14:47:10',
+                ]
+            );
         }
 
         if (!\DB::table('roles')->where('id', '3')->first()) {
