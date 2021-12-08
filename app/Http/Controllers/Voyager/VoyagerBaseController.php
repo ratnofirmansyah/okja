@@ -301,12 +301,12 @@ class VoyagerBaseController extends BaseVoyagerBaseController
 
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
-        if ($slug == 'products') {
-            if ($data->qty_balance != $request->qty_balance) {
-                $qtyBalanceNewComer = abs(intval($data->qty_balance) - intval($request->qty_balance));
-            }
-            $data->qty_total += $qtyBalanceNewComer;
-        }
+        // if ($slug == 'products') {
+        //     if ($data->qty_balance != $request->qty_balance) {
+        //         $qtyBalanceNewComer = abs(intval($data->qty_balance) - intval($request->qty_balance));
+        //     }
+        //     $data->qty_total += $qtyBalanceNewComer;
+        // }
 
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
 
@@ -403,10 +403,10 @@ class VoyagerBaseController extends BaseVoyagerBaseController
 
         event(new BreadDataAdded($dataType, $data));
 
-        if ($slug == 'products') {
-            $data->qty_total += $request->qty_balance;
-            $data->save();
-        }
+        // if ($slug == 'products') {
+        //     $data->qty_total += $request->qty_balance;
+        //     $data->save();
+        // }
 
         if ($slug == 'user-transaction-histories') {
             $data->user_id = auth()->user()->id;
