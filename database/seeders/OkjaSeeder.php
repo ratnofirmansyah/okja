@@ -32,7 +32,7 @@ class OkjaSeeder extends Seeder
                 'server_side' => 0,
                 'details' => '{"order_column":null,"order_display_column":null,"order_direction":"desc","default_search_key":null,"scope":null}',
                 'created_at' => '2020-09-21 14:24:27',
-                'updated_at' => '2020-12-23 05:57:33',
+                'updated_at' => '2021-12-04 04:10:38',
             ),
             1 => 
             array (
@@ -84,9 +84,9 @@ class OkjaSeeder extends Seeder
                 'description' => NULL,
                 'generate_permissions' => 1,
                 'server_side' => 1,
-                'details' => '{"order_column":"id","order_display_column":"updated_at","order_direction":"asc","default_search_key":"name","scope":null}',
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"desc","default_search_key":"name","scope":null}',
                 'created_at' => '2020-10-02 14:19:28',
-                'updated_at' => '2020-12-22 17:48:09',
+                'updated_at' => '2021-12-05 13:16:38',
             ),
             4 => 
             array (
@@ -101,10 +101,10 @@ class OkjaSeeder extends Seeder
                 'controller' => NULL,
                 'description' => NULL,
                 'generate_permissions' => 1,
-                'server_side' => 1,
-                'details' => '{"order_column":"id","order_display_column":"updated_at","order_direction":"asc","default_search_key":"name","scope":null}',
+                'server_side' => 0,
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
                 'created_at' => '2020-10-03 05:14:01',
-                'updated_at' => '2020-12-23 21:00:27',
+                'updated_at' => '2021-12-04 04:17:28',
             ),
             5 => 
             array (
@@ -120,9 +120,9 @@ class OkjaSeeder extends Seeder
                 'description' => NULL,
                 'generate_permissions' => 1,
                 'server_side' => 1,
-                'details' => '{"order_column":"id","order_display_column":"updated_at","order_direction":"asc","default_search_key":"name"}',
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":"name","scope":null}',
                 'created_at' => '2020-10-03 05:27:27',
-                'updated_at' => '2020-10-03 05:27:27',
+                'updated_at' => '2021-12-04 04:19:29',
             ),
             6 => 
             array (
@@ -138,17 +138,17 @@ class OkjaSeeder extends Seeder
                 'description' => NULL,
                 'generate_permissions' => 1,
                 'server_side' => 1,
-                'details' => '{"order_column":"id","order_display_column":"updated_at","order_direction":"asc","default_search_key":"name","scope":null}',
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":"name","scope":null}',
                 'created_at' => '2020-10-03 05:29:57',
-                'updated_at' => '2020-12-23 11:53:43',
+                'updated_at' => '2021-12-04 04:57:58',
             ),
             7 => 
             array (
                 'id' => 14,
                 'name' => 'user_transaction_histories',
                 'slug' => 'user-transaction-histories',
-                'display_name_singular' => 'User Transaction History',
-                'display_name_plural' => 'User Transaction Histories',
+                'display_name_singular' => 'Transaction',
+                'display_name_plural' => 'Transaction',
                 'icon' => 'voyager-basket',
                 'model_name' => 'App\\Models\\UserTransactionHistory',
                 'policy_name' => NULL,
@@ -156,9 +156,9 @@ class OkjaSeeder extends Seeder
                 'description' => NULL,
                 'generate_permissions' => 1,
                 'server_side' => 1,
-                'details' => '{"order_column":"created_at","order_display_column":"created_at","order_direction":"desc","default_search_key":"product_id","scope":null}',
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"desc","default_search_key":null,"scope":null}',
                 'created_at' => '2020-12-19 07:25:01',
-                'updated_at' => '2020-12-24 13:23:08',
+                'updated_at' => '2021-12-04 07:28:05',
             ),
             8 => 
             array (
