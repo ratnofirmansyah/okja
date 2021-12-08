@@ -212,7 +212,12 @@
 
             if ($('select[name="role_id"] option:selected').val() == 3) {
                 $('select[name="brand_id"]').parent().show();
+                $('select[name="outlet_id"]').parent().hide();
+            } else if ($('select[name="role_id"] option:selected').val() == 2) {
+                $('select[name="outlet_id"]').parent().show();
+                $('select[name="brand_id"]').parent().hide();
             } else {
+                $('select[name="outlet_id"]').parent().hide();
                 $('select[name="brand_id"]').parent().hide();
             }
 
@@ -220,9 +225,17 @@
                 var selected_value = $('select[name="role_id"] option:selected').val();
                 if (selected_value == 3) {
                     $('select[name="brand_id"]').parent().show();
+                    $('select[name="outlet_id"]').parent().hide();
+                    $('select[name="outlet_id"]').val('');
+                } else if (selected_value == 2) {
+                    $('select[name="outlet_id"]').parent().show();
+                    $('select[name="brand_id"]').parent().hide();
+                    $('select[name="brand_id"]').val('');
                 } else {
                     $('select[name="brand_id"]').parent().hide();
                     $('select[name="brand_id"]').val('');
+                    $('select[name="outlet_id"]').parent().hide();
+                    $('select[name="outlet_id"]').val('');
                 }
             });
         });
