@@ -945,7 +945,7 @@ class OkjaSeeder extends Seeder
                 'required' => 0,
                 'browse' => 1,
                 'read' => 1,
-                'edit' => 1,
+                'edit' => 0,
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"validation":{"rule":["required"]}}',
