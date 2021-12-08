@@ -39,13 +39,13 @@
 @section('javascript')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        var labels = @json($labels);
         const ctx = $('#myChart');
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue'],
+                labels: labels,
                 datasets: [{
-                    
                         axis: 'y',
                         label: 'Jogja',
                         data: [12, 9],
@@ -78,20 +78,6 @@
                         borderWidth: 1
                     
                 }]
-                // [{
-                //     [{
-                //         label: 'Dataset 1',
-                //         data: [{8,9,6}],
-                //         backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                //         stack: 'Stack 0',
-                //     }],
-                //     [{
-                //         label: 'Dataset 2',
-                //         data: [{10,5,7}],
-                //         backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                //         stack: 'Stack 0',
-                //     }],
-                // }]
             },
             options: {
                 indexAxis: 'y',
