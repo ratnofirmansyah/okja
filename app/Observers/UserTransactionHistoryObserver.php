@@ -13,14 +13,19 @@ class UserTransactionHistoryObserver
      * @param  \App\Models\UserTransactionHistory  $userTransactionHistory
      * @return void
      */
-    public function created(UserTransactionHistory $userTransactionHistory)
+    public function creating(UserTransactionHistory $userTransactionHistory)
     {
-        $deductProductQty = Product::find($userTransactionHistory->product_id);
-        $deductProductQty->qty_balance -= $userTransactionHistory->qty;
-        if ($deductProductQty->qty_balance < 0) {
-            $deductProductQty->qty_balance = 0;
+        $productQty = Product::find($userTransactionHistory->product_id);
+        if ($userTransactionHistory->action == 'out') {
+            $productQty->qty_balance -= $userTransactionHistory->qty;
+            if ($productQty->qty_balance < 0) {
+                $productQty->qty_balance = 0;
+            }
+        }elseif ($userTransactionHistory->action == 'in') {
+            $productQty->qty_total += $userTransactionHistory->qty;
+            $productQty->qty_balance += $userTransactionHistory->qty;
         }
-        $deductProductQty->save();
+        $productQty->save();
     }
 
     /**
@@ -32,16 +37,29 @@ class UserTransactionHistoryObserver
     public function updating(UserTransactionHistory $userTransactionHistory)
     {
         $userTransactionHistoryPrevious = UserTransactionHistory::find($userTransactionHistory->id);
-        \Log::error($userTransactionHistoryPrevious->qty);
-        \Log::error($userTransactionHistory->qty);
-        \Log::error($userTransactionHistory->qty);
-        $currentQty = intval($userTransactionHistory->qty) - intval($userTransactionHistoryPrevious->qty);
-        $deductProductQty = Product::find($userTransactionHistory->product_id);
-        $deductProductQty->qty_balance -= $currentQty;
-        if ($deductProductQty->qty_balance < 0) {
-            $deductProductQty->qty_balance = 0;
+        $productQty = Product::find($userTransactionHistory->product_id);
+        if ($userTransactionHistory->action == 'out') {
+            if ($userTransactionHistoryPrevious->action == 'in') {
+                $productQty->qty_total -= $userTransactionHistoryPrevious->qty;
+                $productQty->qty_balance -= $userTransactionHistoryPrevious->qty+$userTransactionHistory->qty;
+            }elseif ($userTransactionHistoryPrevious->action == 'out') {
+                $currentQty = intval($userTransactionHistory->qty) - intval($userTransactionHistoryPrevious->qty);
+                $productQty->qty_balance -= $currentQty;
+                if ($productQty->qty_balance < 0) {
+                    $productQty->qty_balance = 0;
+                }
+            }
+        }elseif ($userTransactionHistory->action == 'in') {
+            if ($userTransactionHistoryPrevious->action == 'out') {
+                $productQty->qty_total += $userTransactionHistoryPrevious->qty+$userTransactionHistory->qty;
+                $productQty->qty_balance += $userTransactionHistoryPrevious->qty+$userTransactionHistory->qty;
+            }elseif ($userTransactionHistoryPrevious->action == 'in') {
+                $currentQty = intval($userTransactionHistory->qty) - intval($userTransactionHistoryPrevious->qty);
+                $productQty->qty_total += $currentQty;
+                $productQty->qty_balance += $currentQty;
+            }
         }
-        $deductProductQty->save();
+        $productQty->save();
     }
 
     /**
@@ -52,10 +70,14 @@ class UserTransactionHistoryObserver
      */
     public function deleted(UserTransactionHistory $userTransactionHistory)
     {
-        $deductProductQty = Product::find($userTransactionHistory->product_id);
-        $deductProductQty->qty_balance += $userTransactionHistory->qty;
-        if ($deductProductQty->qty_balance < 0) {
-            $deductProductQty->qty_balance = 0;
+        $productQty = Product::find($userTransactionHistory->product_id);
+        if ($userTransactionHistory->action == 'out') {
+            $productQty->qty_balance += $userTransactionHistory->qty;
+        }elseif ($userTransactionHistory->action == 'in') {
+            $productQty->qty_balance -= $userTransactionHistory->qty;
+            if ($productQty->qty_balance < 0) {
+                $productQty->qty_balance = 0;
+            }
         }
         $deductProductQty->save();
     }
