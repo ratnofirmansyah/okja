@@ -81,9 +81,12 @@ class VoyagerBaseController extends BaseVoyagerBaseController
 
             if ($slug == 'user-transaction-histories') {
                 $isBrandAdmin = auth()->user()->hasRole('brand');
+                $isOutletAdmin = auth()->user()->hasRole('outlet');
                 if ($isBrandAdmin) {
                     $brandOutletId = Outlet::select('id')->where('brand_id', auth()->user()->brand_id)->get()->toArray();
                     $query->whereIn('outlet_id', $brandOutletId);
+                }elseif ($isOutletAdmin) {
+                    $query->where('outlet_id', auth()->user()->outlet_id);
                 }
             }
 
@@ -301,12 +304,6 @@ class VoyagerBaseController extends BaseVoyagerBaseController
 
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->validate();
-        // if ($slug == 'products') {
-        //     if ($data->qty_balance != $request->qty_balance) {
-        //         $qtyBalanceNewComer = abs(intval($data->qty_balance) - intval($request->qty_balance));
-        //     }
-        //     $data->qty_total += $qtyBalanceNewComer;
-        // }
 
         $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
 
@@ -356,9 +353,13 @@ class VoyagerBaseController extends BaseVoyagerBaseController
 
         if ($slug == 'user-transaction-histories') {
             $isBrandAdmin = auth()->user()->hasRole('brand');
+            $isOutletAdmin = auth()->user()->hasRole('outlet');
             if ($isBrandAdmin) {
                 $dataTypeContent->outlets = Outlet::select('id', 'name')->where('brand_id', auth()->user()->brand_id)->get();
-            }else{
+            }elseif ($isOutletAdmin) {
+                $dataTypeContent->outlets = Outlet::select('id', 'name')->where('id', auth()->user()->outlet_id)->get();
+                $dataTypeContent->products = Product::select('id', 'name')->where('outlet_id', auth()->user()->outlet_id)->get();
+            } else{
                 $dataTypeContent->outlets = Outlet::select('id', 'name')->get();
             }
         }
@@ -402,11 +403,6 @@ class VoyagerBaseController extends BaseVoyagerBaseController
         $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
 
         event(new BreadDataAdded($dataType, $data));
-
-        // if ($slug == 'products') {
-        //     $data->qty_total += $request->qty_balance;
-        //     $data->save();
-        // }
 
         if ($slug == 'user-transaction-histories') {
             $data->user_id = auth()->user()->id;
