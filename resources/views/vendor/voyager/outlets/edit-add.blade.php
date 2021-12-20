@@ -55,8 +55,11 @@
                                 $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
                             @endphp
 
-                            @if($edit && auth()->user()->hasRole('outlet'))
+                            @if($edit && (auth()->user()->hasRole('outlet') || auth()->user()->hasRole('brand')))
                                 <input type="hidden" name="brand_id" value="{{$dataTypeContent->brand_id}}">
+                            @elseif($add && auth()->user()->hasRole('brand'))
+                                <input type="hidden" name="brand_id" value="{{auth()->user()->brand_id}}">
+                                <input type="hidden" name="add-flag" value="1">
                             @endif
 
                             @foreach($dataTypeRows as $row)
@@ -169,6 +172,9 @@
             if ($('input[name="brand_id"]').val() !== undefined) {
                 $('select[name="brand_id"]').select2('destroy');
                 $('select[name="brand_id"]').attr('disabled', true);
+                if ($('input[name="add-flag"]').val() !== undefined) {
+                    $('select[name="brand_id"]').parent().hide();
+                }
             }
             $('.toggleswitch').bootstrapToggle();
 
