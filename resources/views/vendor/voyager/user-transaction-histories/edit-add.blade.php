@@ -74,11 +74,14 @@
                                     @if (isset($row->details->view))
                                         @include($row->details->view, ['row' => $row, 'dataType' => $dataType, 'dataTypeContent' => $dataTypeContent, 'content' => $dataTypeContent->{$row->field}, 'action' => ($edit ? 'edit' : 'add'), 'view' => ($edit ? 'edit' : 'add'), 'options' => $row->details])
                                     @elseif ($row->field == 'user_transaction_history_belongsto_outlet_relationship')
-                                        <select class="form-control select2" id="outlet_id" name="outlet_id" data-placeholder="Outlet">
+                                        @if(auth()->user()->hasRole('outlet'))
+                                            <input type="hidden" name="outlet_id" value="{{auth()->user()->outlet_id}}">
+                                        @endif
+                                        <select class="form-control select2" id="outlet_id" name="outlet_id" data-placeholder="Outlet" @if(auth()->user()->hasRole('outlet')) disabled @endif>
                                             <option value="">--CHOOSE--</option>
                                             @if(!is_null($dataTypeContent->outlets))
                                                 @foreach($dataTypeContent->outlets as $outlet)
-                                                    <option value="{{$outlet->id}}" @if(!is_null($dataTypeContent->outlet_id) && $dataTypeContent->outlet_id==$outlet->id) selected @endif>{{$outlet->name}}</option>
+                                                    <option value="{{$outlet->id}}" @if((!is_null($dataTypeContent->outlet_id) && $dataTypeContent->outlet_id==$outlet->id) || (auth()->user()->hasRole('outlet') && auth()->user()->outlet_id == $outlet->id)) selected @endif>{{$outlet->name}}</option>
                                                 @endforeach
                                             @endif
                                         </select>
