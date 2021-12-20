@@ -79,7 +79,7 @@ class VoyagerBaseController extends BaseVoyagerBaseController
                 $query = $model::select('*');
             }
 
-            if ($slug == 'user-transaction-histories') {
+            if ($slug == 'user-transaction-histories' || $slug == 'products') {
                 $isBrandAdmin = auth()->user()->hasRole('brand');
                 $isOutletAdmin = auth()->user()->hasRole('outlet');
                 if ($isBrandAdmin) {
@@ -99,8 +99,11 @@ class VoyagerBaseController extends BaseVoyagerBaseController
 
             if ($slug == 'outlets') {
                 $isBrandAdmin = auth()->user()->hasRole('brand');
+                $isOutletAdmin = auth()->user()->hasRole('outlet');
                 if ($isBrandAdmin) {
                     $query->where('brand_id', auth()->user()->brand_id);
+                }elseif ($isOutletAdmin) {
+                    $query->where('id', auth()->user()->outlet_id);
                 }
             }
 
