@@ -18,6 +18,7 @@ use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
 use App\Models\Outlet;
 use App\Models\Product;
+use App\Models\Category;
 
 class VoyagerBaseController extends BaseVoyagerBaseController
 {
@@ -87,6 +88,13 @@ class VoyagerBaseController extends BaseVoyagerBaseController
                     $query->whereIn('outlet_id', $brandOutletId);
                 }elseif ($isOutletAdmin) {
                     $query->where('outlet_id', auth()->user()->outlet_id);
+                }
+            }
+
+            if ($slug == 'categories') {
+                $isBrandAdmin = auth()->user()->hasRole('brand');
+                if ($isBrandAdmin) {
+                    $query->where('brand_id', auth()->user()->brand_id);
                 }
             }
 
@@ -250,7 +258,20 @@ class VoyagerBaseController extends BaseVoyagerBaseController
         foreach ($dataType->editRows as $key => $row) {
             $dataType->editRows[$key]['col_width'] = isset($row->details->width) ? $row->details->width : 100;
         }
-
+        if ($slug == 'products') {
+            $isBrandAdmin = auth()->user()->hasRole('brand');
+            $isOutletAdmin = auth()->user()->hasRole('outlet');
+            if ($isBrandAdmin) {
+                $dataTypeContent->outlets = Outlet::select('id', 'name')->where('brand_id', auth()->user()->brand_id)->get();
+                $dataTypeContent->categories = Category::select('id', 'name')->where('brand_id', auth()->user()->brand_id)->get();
+            }elseif ($isOutletAdmin) {
+                $dataTypeContent->outlets = Outlet::select('id', 'name', 'brand_id')->where('id', auth()->user()->outlet_id)->get();
+                $dataTypeContent->categories = Category::select('id', 'name')->where('brand_id', $dataTypeContent->outlets[0]->brand_id)->get();
+            } else{
+                $dataTypeContent->outlets = Outlet::select('id', 'name')->get();
+                $dataTypeContent->categories = Category::select('id', 'name')->get();
+            }
+        }
         if ($slug == 'user-transaction-histories') {
             $isBrandAdmin = auth()->user()->hasRole('brand');
             if ($isBrandAdmin) {
@@ -354,6 +375,20 @@ class VoyagerBaseController extends BaseVoyagerBaseController
             $dataType->addRows[$key]['col_width'] = $row->details->width ?? 100;
         }
 
+        if ($slug == 'products') {
+            $isBrandAdmin = auth()->user()->hasRole('brand');
+            $isOutletAdmin = auth()->user()->hasRole('outlet');
+            if ($isBrandAdmin) {
+                $dataTypeContent->outlets = Outlet::select('id', 'name')->where('brand_id', auth()->user()->brand_id)->get();
+                $dataTypeContent->categories = Category::select('id', 'name')->where('brand_id', auth()->user()->brand_id)->get();
+            }elseif ($isOutletAdmin) {
+                $dataTypeContent->outlets = Outlet::select('id', 'name', 'brand_id')->where('id', auth()->user()->outlet_id)->get();
+                $dataTypeContent->categories = Category::select('id', 'name')->where('brand_id', $dataTypeContent->outlets[0]->brand_id)->get();
+            } else{
+                $dataTypeContent->outlets = Outlet::select('id', 'name')->get();
+                $dataTypeContent->categories = Category::select('id', 'name')->get();
+            }
+        }
         if ($slug == 'user-transaction-histories') {
             $isBrandAdmin = auth()->user()->hasRole('brand');
             $isOutletAdmin = auth()->user()->hasRole('outlet');
