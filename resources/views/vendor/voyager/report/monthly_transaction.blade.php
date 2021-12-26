@@ -25,11 +25,20 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Outlet</label>
-                                    <select class="form-control select2" data-placeholder="Outlet">
+                                    <select class="form-control select2" data-placeholder="Outlet" name="outlet_id">
                                         <option></option>
+                                        <option value="all" @if($outlet_id=='all') selected @endif>All</option>
                                         @foreach($outlets as $outlet)
-                                            <option value="{{$outlet->id}}">{{$outlet->id}}</option>
+                                            <option value="{{$outlet->id}}" @if($outlet_id!='all' && $outlet_id==$outlet->id) selected @endif>{{$outlet->name}}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Transaction Type</label>
+                                    <select class="form-control select2" data-placeholder="Transaction Type" name="type">
+                                        <option></option>
+                                        <option value="out" @if($type=='out') selected @endif>Transaction Out</option>
+                                        <option value="in"  @if($type=='in') selected @endif>Transaction In</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

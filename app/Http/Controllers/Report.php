@@ -123,8 +123,10 @@ class Report extends Controller
             $data['outlets'] = Outlet::all();
         }
 
+        $data['type'] = $request->get('type', 'out');
+        $data['outlet_id'] = $request->get('outlet_id', 'all');
         $daterange = explode(' - ', $request->get('daterange', date('Y-m', strtotime('-12 months')).' - '.date('Y-m')));
-        $data['daterangeori'] = date('m/Y', strtotime($daterange[0])).' - '.date('m/Y', strtotime($daterange[1]));
+        $data['daterangeori'] = date('m/01/Y', strtotime($daterange[0])).' - '.date('m/t/Y', strtotime($daterange[1]));
 
         // --- Get by daily ---
             $selectedColumns = [
@@ -134,12 +136,17 @@ class Report extends Controller
             $transactionDaily = DB::table('user_transaction_histories')
                 ->select($selectedColumns)
                 ->join('outlets', 'outlets.id', '=', 'user_transaction_histories.outlet_id')
-                ->whereBetween(DB::raw('date_format(user_transaction_histories.created_at, "%Y-%m")'), [$daterange[0], $daterange[1]])
+                ->whereBetween(DB::raw('date_format(user_transaction_histories.created_at, "%Y-%m")'), [date('Y-m', strtotime($daterange[0])), date('Y-m', strtotime($daterange[1]))])
+                ->where('user_transaction_histories.action', $data['type'])
                 ->whereNull('user_transaction_histories.deleted_at');
 
             if ($user->role_id == 3 || $user->role_id == 2) {
                 $outletIds = $data['outlets']->pluck('id')->toArray();
                 $transactionDaily = $transactionDaily->whereIn('user_transaction_histories.outlet_id', $outletIds);
+            }
+
+            if ($data['outlet_id'] != 'all') {
+                $transactionDaily = $transactionDaily->where('user_transaction_histories.outlet_id', $data['outlet_id']);
             }
 
             $transactionDaily = $transactionDaily->groupBy(DB::raw('date_format(user_transaction_histories.created_at, "%Y-%m")'))->get();
@@ -152,12 +159,17 @@ class Report extends Controller
             $transactionOutlets = DB::table('user_transaction_histories')
                 ->select($selectedColumns)
                 ->join('outlets', 'outlets.id', '=', 'user_transaction_histories.outlet_id')
-                ->whereBetween(DB::raw('date_format(user_transaction_histories.created_at, "%Y-%m")'), [$daterange[0], $daterange[1]])
+                ->whereBetween(DB::raw('date_format(user_transaction_histories.created_at, "%Y-%m")'), [date('Y-m', strtotime($daterange[0])), date('Y-m', strtotime($daterange[1]))])
+                ->where('user_transaction_histories.action', $data['type'])
                 ->whereNull('user_transaction_histories.deleted_at');
 
             if ($user->role_id == 3 || $user->role_id == 2) {
                 $outletIds = $data['outlets']->pluck('id')->toArray();
                 $transactionOutlets = $transactionOutlets->whereIn('user_transaction_histories.outlet_id', $outletIds);
+            }
+
+            if ($data['outlet_id'] != 'all') {
+                $transactionOutlets = $transactionOutlets->where('user_transaction_histories.outlet_id', $data['outlet_id']);
             }
 
             $transactionOutlets = $transactionOutlets->groupBy('outlets.name')->groupBy('outlets.id')->get();
@@ -176,6 +188,7 @@ class Report extends Controller
                         ->select($selectedColumns)
                         ->join('outlets', 'outlets.id', '=', 'user_transaction_histories.outlet_id')
                         ->where('outlets.id', $outlet->id)
+                        ->where('user_transaction_histories.action', $data['type'])
                         ->where(DB::raw('date_format(user_transaction_histories.created_at, "%Y-%m")'), $daily->date)
                         ->whereNull('user_transaction_histories.deleted_at');
 
