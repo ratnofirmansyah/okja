@@ -122,7 +122,7 @@ class OkjaSeeder extends Seeder
                 'server_side' => 1,
                 'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":"name","scope":null}',
                 'created_at' => '2020-10-03 05:27:27',
-                'updated_at' => '2021-12-04 04:19:29',
+                'updated_at' => '2021-12-25 07:56:58',
             ),
             6 => 
             array (
@@ -140,7 +140,7 @@ class OkjaSeeder extends Seeder
                 'server_side' => 1,
                 'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":"name","scope":null}',
                 'created_at' => '2020-10-03 05:29:57',
-                'updated_at' => '2021-12-04 04:57:58',
+                'updated_at' => '2021-12-08 17:26:29',
             ),
             7 => 
             array (
