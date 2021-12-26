@@ -16,20 +16,29 @@
                 <div class="panel panel-bordered">
                     <div class="panel-body">
                         <div class="col-md-12">
-                            <form method="get">
+                            <form method="get" action="">
                                 <!-- CSRF TOKEN -->
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label>Date Range</label>
-                                    <input type="text" class="form-control daterange" name="daterange" value="01/01/2018 - 01/15/2018" />
+                                    <input type="text" class="form-control daterange" name="daterange" value="{{$daterangeori}}" />
                                 </div>
                                 <div class="form-group">
                                     <label>Outlet</label>
-                                    <select class="form-control select2" data-placeholder="Outlet">
+                                    <select class="form-control select2" data-placeholder="Outlet" name="outlet_id">
                                         <option></option>
+                                        <option value="all" @if($outlet_id=='all') selected @endif>All</option>
                                         @foreach($outlets as $outlet)
-                                            <option value="{{$outlet->id}}">{{$outlet->id}}</option>
+                                            <option value="{{$outlet->id}}" @if($outlet_id!='all' && $outlet_id==$outlet->id) selected @endif>{{$outlet->name}}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Transaction Type</label>
+                                    <select class="form-control select2" data-placeholder="Transaction Type" name="type">
+                                        <option></option>
+                                        <option value="out" @if($type=='out') selected @endif>Transaction Out</option>
+                                        <option value="in"  @if($type=='in') selected @endif>Transaction In</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -77,8 +86,8 @@
                 data: dataTransactions[i].data,
                 fill: false,
                 backgroundColor: [
-                    `rgba(${r}, ${g}, ${b}, 0.2)`,
-                    `rgba(${r}, ${g}, ${b}, 0.2)`
+                    `rgba(${r}, ${g}, ${b}, 0.5)`,
+                    `rgba(${r}, ${g}, ${b}, 0.5)`
                 ],
                 stack: 'Stack 0',
                 borderWidth: 1
@@ -115,7 +124,7 @@
             }
         });
         $('.daterange').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('YYYY-MM-DD') + ' - ' + picker.endDate.format('YYYY-MM-DD'));
+            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
         });
         $('.daterange').on('cancel.daterangepicker', function(ev, picker) {
             $(this).val('');
