@@ -55,6 +55,13 @@
                                 $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
                             @endphp
 
+                            @if($edit && (auth()->user()->hasRole('outlet') || auth()->user()->hasRole('brand')))
+                                <input type="hidden" name="brand_id" value="{{$dataTypeContent->brand_id}}">
+                            @elseif($add && auth()->user()->hasRole('brand'))
+                                <input type="hidden" name="brand_id" value="{{auth()->user()->brand_id}}">
+                                <input type="hidden" name="add-flag" value="1">
+                            @endif
+
                             @foreach($dataTypeRows as $row)
                                 <!-- GET THE DISPLAY OPTIONS -->
                                 @php
@@ -73,27 +80,6 @@
                                     @include('voyager::multilingual.input-hidden-bread-edit-add')
                                     @if (isset($row->details->view))
                                         @include($row->details->view, ['row' => $row, 'dataType' => $dataType, 'dataTypeContent' => $dataTypeContent, 'content' => $dataTypeContent->{$row->field}, 'action' => ($edit ? 'edit' : 'add'), 'view' => ($edit ? 'edit' : 'add'), 'options' => $row->details])
-                                    @elseif ($row->field == 'user_transaction_history_belongsto_outlet_relationship')
-                                        @if(auth()->user()->hasRole('outlet'))
-                                            <input type="hidden" name="outlet_id" value="{{auth()->user()->outlet_id}}">
-                                        @endif
-                                        <select class="form-control select2" id="outlet_id" name="outlet_id" data-placeholder="Outlet" @if(auth()->user()->hasRole('outlet')) disabled @endif>
-                                            <option value="">--CHOOSE--</option>
-                                            @if(!is_null($dataTypeContent->outlets))
-                                                @foreach($dataTypeContent->outlets as $outlet)
-                                                    <option value="{{$outlet->id}}" @if((!is_null($dataTypeContent->outlet_id) && $dataTypeContent->outlet_id==$outlet->id) || (auth()->user()->hasRole('outlet') && auth()->user()->outlet_id == $outlet->id)) selected @endif>{{$outlet->name}}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                    @elseif ($row->field == 'user_transaction_history_belongsto_product_relationship')
-                                        <select class="form-control select2" id="product_id" name="product_id" data-placeholder="Product">
-                                            <option value="">--CHOOSE--</option>
-                                            @if(!is_null($dataTypeContent->products))
-                                                @foreach($dataTypeContent->products as $product)
-                                                    <option value="{{$product->id}}" @if(!is_null($dataTypeContent->product_id) && $dataTypeContent->product_id==$product->id) selected @endif>{{$product->name}}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
                                     @elseif ($row->type == 'relationship')
                                         @include('voyager::formfields.relationship', ['options' => $row->details])
                                     @else
@@ -183,6 +169,13 @@
         }
 
         $('document').ready(function () {
+            if ($('input[name="brand_id"]').val() !== undefined) {
+                $('select[name="brand_id"]').select2('destroy');
+                $('select[name="brand_id"]').attr('disabled', true);
+                if ($('input[name="add-flag"]').val() !== undefined) {
+                    $('select[name="brand_id"]').parent().hide();
+                }
+            }
             $('.toggleswitch').bootstrapToggle();
 
             //Init datepicker for date fields if data-datepicker attribute defined
@@ -230,25 +223,6 @@
                 $('#confirm_delete_modal').modal('hide');
             });
             $('[data-toggle="tooltip"]').tooltip();
-            $('select[name="outlet_id"]').change(function () {
-                var selected_value = $('select[name="outlet_id"] option:selected').val();
-                $.ajax({
-                    type: 'get',
-                    url: '/api/get-product',
-                    data: {
-                        outlet_id : selected_value
-                    },
-                    success: function (results) {
-                        $('#product_id').select2('destroy');
-                        $('#product_id').html(results);
-                        $('#product_id').select2();
-                        $('#product_id option[value="_all"]').remove();
-                    },
-                    error: function (argument) {
-                        alert('Something was wrong!');
-                    }
-                });
-            });
         });
     </script>
 @stop

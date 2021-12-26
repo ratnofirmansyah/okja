@@ -29,10 +29,11 @@ class Product extends Model
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
-    // public function setQtyBalanceAttribute($value)
-    // {
-    //     $this->attributes['qty_total'] = $value;
-    // }
+    public function setQtyTotalAttribute($value)
+    {
+        $this->attributes['qty_total'] = $value;
+        $this->attributes['qty_balance'] = $value;
+    }
 
     public function outlet() {
         return $this->belongsTo('App\Models\Outlet');

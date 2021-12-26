@@ -73,7 +73,7 @@
                                     @include('voyager::multilingual.input-hidden-bread-edit-add')
                                     @if (isset($row->details->view))
                                         @include($row->details->view, ['row' => $row, 'dataType' => $dataType, 'dataTypeContent' => $dataTypeContent, 'content' => $dataTypeContent->{$row->field}, 'action' => ($edit ? 'edit' : 'add'), 'view' => ($edit ? 'edit' : 'add'), 'options' => $row->details])
-                                    @elseif ($row->field == 'user_transaction_history_belongsto_outlet_relationship')
+                                    @elseif ($row->field == 'product_belongsto_outlet_relationship')
                                         @if(auth()->user()->hasRole('outlet'))
                                             <input type="hidden" name="outlet_id" value="{{auth()->user()->outlet_id}}">
                                         @endif
@@ -85,12 +85,12 @@
                                                 @endforeach
                                             @endif
                                         </select>
-                                    @elseif ($row->field == 'user_transaction_history_belongsto_product_relationship')
-                                        <select class="form-control select2" id="product_id" name="product_id" data-placeholder="Product">
+                                    @elseif ($row->field == 'product_belongsto_category_relationship')
+                                        <select class="form-control select2" id="category_id" name="category_id" data-placeholder="Category">
                                             <option value="">--CHOOSE--</option>
-                                            @if(!is_null($dataTypeContent->products))
-                                                @foreach($dataTypeContent->products as $product)
-                                                    <option value="{{$product->id}}" @if(!is_null($dataTypeContent->product_id) && $dataTypeContent->product_id==$product->id) selected @endif>{{$product->name}}</option>
+                                            @if(!is_null($dataTypeContent->categories))
+                                                @foreach($dataTypeContent->categories as $category)
+                                                    <option value="{{$category->id}}" @if(!is_null($dataTypeContent->category_id) && $dataTypeContent->category_id==$category->id) selected @endif>{{$category->name}}</option>
                                                 @endforeach
                                             @endif
                                         </select>
@@ -230,25 +230,6 @@
                 $('#confirm_delete_modal').modal('hide');
             });
             $('[data-toggle="tooltip"]').tooltip();
-            $('select[name="outlet_id"]').change(function () {
-                var selected_value = $('select[name="outlet_id"] option:selected').val();
-                $.ajax({
-                    type: 'get',
-                    url: '/api/get-product',
-                    data: {
-                        outlet_id : selected_value
-                    },
-                    success: function (results) {
-                        $('#product_id').select2('destroy');
-                        $('#product_id').html(results);
-                        $('#product_id').select2();
-                        $('#product_id option[value="_all"]').remove();
-                    },
-                    error: function (argument) {
-                        alert('Something was wrong!');
-                    }
-                });
-            });
         });
     </script>
 @stop

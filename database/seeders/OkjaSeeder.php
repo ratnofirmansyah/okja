@@ -32,7 +32,7 @@ class OkjaSeeder extends Seeder
                 'server_side' => 0,
                 'details' => '{"order_column":null,"order_display_column":null,"order_direction":"desc","default_search_key":null,"scope":null}',
                 'created_at' => '2020-09-21 14:24:27',
-                'updated_at' => '2020-12-23 05:57:33',
+                'updated_at' => '2021-12-04 04:10:38',
             ),
             1 => 
             array (
@@ -84,9 +84,9 @@ class OkjaSeeder extends Seeder
                 'description' => NULL,
                 'generate_permissions' => 1,
                 'server_side' => 1,
-                'details' => '{"order_column":"id","order_display_column":"updated_at","order_direction":"asc","default_search_key":"name","scope":null}',
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"desc","default_search_key":"name","scope":null}',
                 'created_at' => '2020-10-02 14:19:28',
-                'updated_at' => '2020-12-22 17:48:09',
+                'updated_at' => '2021-12-05 13:16:38',
             ),
             4 => 
             array (
@@ -101,10 +101,10 @@ class OkjaSeeder extends Seeder
                 'controller' => NULL,
                 'description' => NULL,
                 'generate_permissions' => 1,
-                'server_side' => 1,
-                'details' => '{"order_column":"id","order_display_column":"updated_at","order_direction":"asc","default_search_key":"name","scope":null}',
+                'server_side' => 0,
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
                 'created_at' => '2020-10-03 05:14:01',
-                'updated_at' => '2020-12-23 21:00:27',
+                'updated_at' => '2021-12-04 04:17:28',
             ),
             5 => 
             array (
@@ -120,9 +120,9 @@ class OkjaSeeder extends Seeder
                 'description' => NULL,
                 'generate_permissions' => 1,
                 'server_side' => 1,
-                'details' => '{"order_column":"id","order_display_column":"updated_at","order_direction":"asc","default_search_key":"name"}',
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":"name","scope":null}',
                 'created_at' => '2020-10-03 05:27:27',
-                'updated_at' => '2020-10-03 05:27:27',
+                'updated_at' => '2021-12-04 04:19:29',
             ),
             6 => 
             array (
@@ -138,17 +138,17 @@ class OkjaSeeder extends Seeder
                 'description' => NULL,
                 'generate_permissions' => 1,
                 'server_side' => 1,
-                'details' => '{"order_column":"id","order_display_column":"updated_at","order_direction":"asc","default_search_key":"name","scope":null}',
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":"name","scope":null}',
                 'created_at' => '2020-10-03 05:29:57',
-                'updated_at' => '2020-12-23 11:53:43',
+                'updated_at' => '2021-12-04 04:57:58',
             ),
             7 => 
             array (
                 'id' => 14,
                 'name' => 'user_transaction_histories',
                 'slug' => 'user-transaction-histories',
-                'display_name_singular' => 'User Transaction History',
-                'display_name_plural' => 'User Transaction Histories',
+                'display_name_singular' => 'Transaction',
+                'display_name_plural' => 'Transaction',
                 'icon' => 'voyager-basket',
                 'model_name' => 'App\\Models\\UserTransactionHistory',
                 'policy_name' => NULL,
@@ -156,9 +156,9 @@ class OkjaSeeder extends Seeder
                 'description' => NULL,
                 'generate_permissions' => 1,
                 'server_side' => 1,
-                'details' => '{"order_column":"created_at","order_display_column":"created_at","order_direction":"desc","default_search_key":"product_id","scope":null}',
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"desc","default_search_key":null,"scope":null}',
                 'created_at' => '2020-12-19 07:25:01',
-                'updated_at' => '2020-12-24 13:23:08',
+                'updated_at' => '2021-12-04 07:28:05',
             ),
             8 => 
             array (
@@ -244,8 +244,8 @@ class OkjaSeeder extends Seeder
                 'edit' => 1,
                 'add' => 1,
                 'delete' => 0,
-                'details' => 'null',
-                'order' => 5,
+                'details' => '{}',
+                'order' => 6,
             ),
             4 => 
             array (
@@ -255,13 +255,13 @@ class OkjaSeeder extends Seeder
                 'type' => 'timestamp',
                 'display_name' => 'Created At',
                 'required' => 0,
-                'browse' => 0,
+                'browse' => 1,
                 'read' => 1,
                 'edit' => 0,
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 11,
+                'order' => 14,
             ),
             5 => 
             array (
@@ -272,12 +272,12 @@ class OkjaSeeder extends Seeder
                 'display_name' => 'Updated At',
                 'required' => 0,
                 'browse' => 0,
-                'read' => 0,
+                'read' => 1,
                 'edit' => 0,
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 12,
+                'order' => 15,
             ),
             6 => 
             array (
@@ -293,7 +293,7 @@ class OkjaSeeder extends Seeder
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 7,
+                'order' => 8,
             ),
             7 => 
             array (
@@ -309,7 +309,7 @@ class OkjaSeeder extends Seeder
                 'add' => 1,
                 'delete' => 0,
                 'details' => '{"model":"TCG\\\\Voyager\\\\Models\\\\Role","table":"roles","type":"belongsTo","column":"role_id","key":"id","label":"display_name","pivot_table":"roles","pivot":"0","taggable":"0"}',
-                'order' => 9,
+                'order' => 10,
             ),
             8 => 
             array (
@@ -469,7 +469,7 @@ class OkjaSeeder extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"validation":{"rule":["required"]}}',
-                'order' => 8,
+                'order' => 9,
             ),
             18 => 
             array (
@@ -479,8 +479,8 @@ class OkjaSeeder extends Seeder
                 'type' => 'text',
                 'display_name' => 'Id',
                 'required' => 1,
-                'browse' => 1,
-                'read' => 1,
+                'browse' => 0,
+                'read' => 0,
                 'edit' => 0,
                 'add' => 0,
                 'delete' => 0,
@@ -543,7 +543,7 @@ class OkjaSeeder extends Seeder
                 'type' => 'timestamp',
                 'display_name' => 'Created At',
                 'required' => 0,
-                'browse' => 0,
+                'browse' => 1,
                 'read' => 1,
                 'edit' => 0,
                 'add' => 0,
@@ -575,8 +575,8 @@ class OkjaSeeder extends Seeder
                 'type' => 'text',
                 'display_name' => 'Id',
                 'required' => 1,
-                'browse' => 1,
-                'read' => 1,
+                'browse' => 0,
+                'read' => 0,
                 'edit' => 0,
                 'add' => 0,
                 'delete' => 0,
@@ -605,7 +605,7 @@ class OkjaSeeder extends Seeder
                 'data_type_id' => 8,
                 'field' => 'name',
                 'type' => 'text',
-                'display_name' => 'Name',
+                'display_name' => 'Outlet Name',
                 'required' => 1,
                 'browse' => 1,
                 'read' => 1,
@@ -671,7 +671,7 @@ class OkjaSeeder extends Seeder
                 'type' => 'timestamp',
                 'display_name' => 'Created At',
                 'required' => 0,
-                'browse' => 0,
+                'browse' => 1,
                 'read' => 1,
                 'edit' => 0,
                 'add' => 0,
@@ -701,7 +701,7 @@ class OkjaSeeder extends Seeder
                 'data_type_id' => 8,
                 'field' => 'outlet_belongsto_brand_relationship',
                 'type' => 'relationship',
-                'display_name' => 'Brand',
+                'display_name' => 'Brand Name',
                 'required' => 0,
                 'browse' => 1,
                 'read' => 1,
@@ -719,8 +719,8 @@ class OkjaSeeder extends Seeder
                 'type' => 'text',
                 'display_name' => 'Id',
                 'required' => 1,
-                'browse' => 1,
-                'read' => 1,
+                'browse' => 0,
+                'read' => 0,
                 'edit' => 0,
                 'add' => 0,
                 'delete' => 0,
@@ -733,7 +733,7 @@ class OkjaSeeder extends Seeder
                 'data_type_id' => 9,
                 'field' => 'name',
                 'type' => 'text',
-                'display_name' => 'Name',
+                'display_name' => 'Category Name',
                 'required' => 1,
                 'browse' => 1,
                 'read' => 1,
@@ -783,8 +783,8 @@ class OkjaSeeder extends Seeder
                 'type' => 'text',
                 'display_name' => 'Id',
                 'required' => 1,
-                'browse' => 1,
-                'read' => 1,
+                'browse' => 0,
+                'read' => 0,
                 'edit' => 0,
                 'add' => 0,
                 'delete' => 0,
@@ -796,7 +796,7 @@ class OkjaSeeder extends Seeder
                 'id' => 42,
                 'data_type_id' => 10,
                 'field' => 'outlet_id',
-                'type' => 'text',
+                'type' => 'select_dropdown',
                 'display_name' => 'Outlet',
                 'required' => 1,
                 'browse' => 1,
@@ -812,7 +812,7 @@ class OkjaSeeder extends Seeder
                 'id' => 43,
                 'data_type_id' => 10,
                 'field' => 'category_id',
-                'type' => 'text',
+                'type' => 'select_dropdown',
                 'display_name' => 'Category',
                 'required' => 1,
                 'browse' => 1,
@@ -837,7 +837,7 @@ class OkjaSeeder extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"validation":{"rule":["required"]}}',
-                'order' => 6,
+                'order' => 10,
             ),
             41 => 
             array (
@@ -845,7 +845,7 @@ class OkjaSeeder extends Seeder
                 'data_type_id' => 10,
                 'field' => 'name',
                 'type' => 'text',
-                'display_name' => 'Name',
+                'display_name' => 'Product Name',
                 'required' => 1,
                 'browse' => 1,
                 'read' => 1,
@@ -853,7 +853,7 @@ class OkjaSeeder extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"validation":{"rule":["required"]}}',
-                'order' => 7,
+                'order' => 6,
             ),
             42 => 
             array (
@@ -869,7 +869,7 @@ class OkjaSeeder extends Seeder
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 8,
+                'order' => 14,
             ),
             43 => 
             array (
@@ -885,7 +885,7 @@ class OkjaSeeder extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"on":"ready to sell","off":"not ready to sell","checked":"true"}',
-                'order' => 9,
+                'order' => 7,
             ),
             44 => 
             array (
@@ -895,13 +895,13 @@ class OkjaSeeder extends Seeder
                 'type' => 'number',
                 'display_name' => 'Price',
                 'required' => 1,
-                'browse' => 1,
+                'browse' => 0,
                 'read' => 1,
                 'edit' => 1,
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"validation":{"rule":["required","min:0"]}}',
-                'order' => 10,
+                'order' => 11,
             ),
             45 => 
             array (
@@ -917,7 +917,7 @@ class OkjaSeeder extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"validation":"after:tomorrow"}',
-                'order' => 11,
+                'order' => 12,
             ),
             46 => 
             array (
@@ -929,11 +929,11 @@ class OkjaSeeder extends Seeder
                 'required' => 0,
                 'browse' => 1,
                 'read' => 1,
-                'edit' => 1,
-                'add' => 1,
-                'delete' => 1,
+                'edit' => 0,
+                'add' => 0,
+                'delete' => 0,
                 'details' => '{"validation":{"rule":["required"]}}',
-                'order' => 12,
+                'order' => 9,
             ),
             47 => 
             array (
@@ -943,13 +943,13 @@ class OkjaSeeder extends Seeder
                 'type' => 'number',
                 'display_name' => 'Qty Total',
                 'required' => 0,
-                'browse' => 0,
+                'browse' => 1,
                 'read' => 1,
                 'edit' => 0,
-                'add' => 0,
-                'delete' => 0,
-                'details' => '{}',
-                'order' => 13,
+                'add' => 1,
+                'delete' => 1,
+                'details' => '{"validation":{"rule":["required"]}}',
+                'order' => 8,
             ),
             48 => 
             array (
@@ -959,13 +959,13 @@ class OkjaSeeder extends Seeder
                 'type' => 'timestamp',
                 'display_name' => 'Created At',
                 'required' => 0,
-                'browse' => 0,
+                'browse' => 1,
                 'read' => 1,
                 'edit' => 0,
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 14,
+                'order' => 13,
             ),
             49 => 
             array (
@@ -1012,7 +1012,7 @@ class OkjaSeeder extends Seeder
                 'edit' => 1,
                 'add' => 1,
                 'delete' => 1,
-                'details' => '{}',
+                'details' => '{"validation":{"rule":["required"]}}',
                 'order' => 4,
             ),
             52 => 
@@ -1044,7 +1044,7 @@ class OkjaSeeder extends Seeder
                 'edit' => 1,
                 'add' => 1,
                 'delete' => 1,
-                'details' => '{}',
+                'details' => '{"validation":{"rule":["required"]}}',
                 'order' => 8,
             ),
             54 => 
@@ -1295,11 +1295,11 @@ class OkjaSeeder extends Seeder
                 'type' => 'timestamp',
                 'display_name' => 'Deleted At',
                 'required' => 0,
-                'browse' => 1,
-                'read' => 1,
-                'edit' => 1,
-                'add' => 1,
-                'delete' => 1,
+                'browse' => 0,
+                'read' => 0,
+                'edit' => 0,
+                'add' => 0,
+                'delete' => 0,
                 'details' => '{}',
                 'order' => 7,
             ),
@@ -1317,7 +1317,7 @@ class OkjaSeeder extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{}',
-                'order' => 4,
+                'order' => 5,
             ),
             71 => 
             array (
@@ -1328,12 +1328,12 @@ class OkjaSeeder extends Seeder
                 'display_name' => 'Email Verified At',
                 'required' => 0,
                 'browse' => 0,
-                'read' => 1,
+                'read' => 0,
                 'edit' => 0,
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 6,
+                'order' => 7,
             ),
             72 => 
             array (
@@ -1349,7 +1349,7 @@ class OkjaSeeder extends Seeder
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 13,
+                'order' => 16,
             ),
             73 => 
             array (
@@ -1365,7 +1365,7 @@ class OkjaSeeder extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{"model":"App\\\\Models\\\\Brand","table":"brands","type":"belongsTo","column":"brand_id","key":"id","label":"name","pivot_table":"brands","pivot":"0","taggable":"0"}',
-                'order' => 10,
+                'order' => 11,
             ),
             74 => 
             array (
@@ -1373,14 +1373,14 @@ class OkjaSeeder extends Seeder
                 'data_type_id' => 14,
                 'field' => 'outlet_id',
                 'type' => 'select_dropdown',
-                'display_name' => 'Outlet Id',
+                'display_name' => 'Outlet',
                 'required' => 0,
                 'browse' => 1,
                 'read' => 1,
                 'edit' => 1,
                 'add' => 1,
                 'delete' => 1,
-                'details' => '{}',
+                'details' => '{"validation":{"rule":["required"]}}',
                 'order' => 2,
             ),
             75 => 
@@ -1414,6 +1414,86 @@ class OkjaSeeder extends Seeder
                 'delete' => 0,
                 'details' => '{}',
                 'order' => 10,
+            ),
+            77 => 
+            array (
+                'id' => 97,
+                'data_type_id' => 1,
+                'field' => 'user_belongsto_outlet_relationship',
+                'type' => 'relationship',
+                'display_name' => 'Outlet',
+                'required' => 0,
+                'browse' => 1,
+                'read' => 1,
+                'edit' => 1,
+                'add' => 1,
+                'delete' => 1,
+                'details' => '{"model":"App\\\\Models\\\\Outlet","table":"outlets","type":"belongsTo","column":"outlet_id","key":"id","label":"name","pivot_table":"brands","pivot":"0","taggable":"0"}',
+                'order' => 12,
+            ),
+            78 => 
+            array (
+                'id' => 98,
+                'data_type_id' => 1,
+                'field' => 'outlet_id',
+                'type' => 'select_dropdown',
+                'display_name' => 'Outlet',
+                'required' => 0,
+                'browse' => 1,
+                'read' => 1,
+                'edit' => 1,
+                'add' => 1,
+                'delete' => 1,
+                'details' => '{}',
+                'order' => 4,
+            ),
+            79 => 
+            array (
+                'id' => 99,
+                'data_type_id' => 1,
+                'field' => 'remember_token',
+                'type' => 'text',
+                'display_name' => 'Remember Token',
+                'required' => 0,
+                'browse' => 0,
+                'read' => 0,
+                'edit' => 0,
+                'add' => 0,
+                'delete' => 0,
+                'details' => '{}',
+                'order' => 13,
+            ),
+            80 => 
+            array (
+                'id' => 100,
+                'data_type_id' => 9,
+                'field' => 'deleted_at',
+                'type' => 'timestamp',
+                'display_name' => 'Deleted At',
+                'required' => 0,
+                'browse' => 0,
+                'read' => 0,
+                'edit' => 0,
+                'add' => 0,
+                'delete' => 0,
+                'details' => '{}',
+                'order' => 5,
+            ),
+            81 => 
+            array (
+                'id' => 101,
+                'data_type_id' => 14,
+                'field' => 'action',
+                'type' => 'select_dropdown',
+                'display_name' => 'Action',
+                'required' => 1,
+                'browse' => 1,
+                'read' => 1,
+                'edit' => 1,
+                'add' => 1,
+                'delete' => 1,
+                'details' => '{"default":"out","options":{"out":"Transaction Out","in":"Transaction In"}}',
+                'order' => 5,
             ),
         ));
 
@@ -1691,6 +1771,54 @@ class OkjaSeeder extends Seeder
                 'updated_at' => '2020-12-19 07:26:47',
                 'route' => 'voyager.faqs.index',
                 'parameters' => NULL,
+            ),
+            17 => 
+            array (
+                'id' => 20,
+                'menu_id' => 1,
+                'title' => 'Reports',
+                'url' => '',
+                'target' => '_self',
+                'icon_class' => 'voyager-pie-chart',
+                'color' => '#000000',
+                'parent_id' => NULL,
+                'order' => 12,
+                'created_at' => '2021-12-05 13:10:27',
+                'updated_at' => '2021-12-05 13:10:27',
+                'route' => NULL,
+                'parameters' => '',
+            ),
+            18 => 
+            array (
+                'id' => 21,
+                'menu_id' => 1,
+                'title' => 'Daily Transaction',
+                'url' => 'admin/reports/daily-transactions',
+                'target' => '_self',
+                'icon_class' => 'voyager-bar-chart',
+                'color' => '#000000',
+                'parent_id' => 20,
+                'order' => 1,
+                'created_at' => '2021-12-05 13:13:29',
+                'updated_at' => '2021-12-05 13:13:45',
+                'route' => NULL,
+                'parameters' => '',
+            ),
+            19 => 
+            array (
+                'id' => 22,
+                'menu_id' => 1,
+                'title' => 'Monthly Transaction',
+                'url' => 'admin/reports/monthly-transactions',
+                'target' => '_self',
+                'icon_class' => 'voyager-bar-chart',
+                'color' => '#000000',
+                'parent_id' => 20,
+                'order' => 2,
+                'created_at' => '2021-12-05 13:14:18',
+                'updated_at' => '2021-12-07 13:05:14',
+                'route' => NULL,
+                'parameters' => '',
             ),
         ));
 
@@ -2160,7 +2288,24 @@ class OkjaSeeder extends Seeder
         }
 
         if (!\DB::table('roles')->where('id', '2')->first()) {
-            \DB::table('roles')->where('id', '2')->delete();
+            \DB::table('roles')->insert(
+                [
+                    'id' => 2,
+                    'name' => 'outlet',
+                    'display_name' => 'Outlet Staff',
+                    'created_at' => '2021-12-03 14:25:33',
+                    'updated_at' => '2021-12-03 14:47:10',
+                ]
+            );
+        }else{
+            \DB::table('roles')->where('id', 2)->update(
+                [
+                    'name' => 'outlet',
+                    'display_name' => 'Outlet Staff',
+                    'created_at' => '2021-12-03 14:25:33',
+                    'updated_at' => '2021-12-03 14:47:10',
+                ]
+            );
         }
 
         if (!\DB::table('roles')->where('id', '3')->first()) {
@@ -2186,384 +2331,459 @@ class OkjaSeeder extends Seeder
             1 => 
             array (
                 'permission_id' => 1,
-                'role_id' => 3,
+                'role_id' => 2,
             ),
             2 => 
+            array (
+                'permission_id' => 1,
+                'role_id' => 3,
+            ),
+            3 => 
             array (
                 'permission_id' => 2,
                 'role_id' => 1,
             ),
-            3 => 
+            4 => 
             array (
                 'permission_id' => 3,
                 'role_id' => 1,
             ),
-            4 => 
+            5 => 
             array (
                 'permission_id' => 5,
                 'role_id' => 1,
             ),
-            5 => 
+            6 => 
             array (
                 'permission_id' => 6,
                 'role_id' => 1,
             ),
-            6 => 
+            7 => 
             array (
                 'permission_id' => 7,
                 'role_id' => 1,
             ),
-            7 => 
+            8 => 
             array (
                 'permission_id' => 8,
                 'role_id' => 1,
             ),
-            8 => 
+            9 => 
             array (
                 'permission_id' => 9,
                 'role_id' => 1,
             ),
-            9 => 
+            10 => 
             array (
                 'permission_id' => 10,
                 'role_id' => 1,
             ),
-            10 => 
+            11 => 
             array (
                 'permission_id' => 11,
                 'role_id' => 1,
             ),
-            11 => 
+            12 => 
             array (
                 'permission_id' => 12,
                 'role_id' => 1,
             ),
-            12 => 
+            13 => 
             array (
                 'permission_id' => 13,
                 'role_id' => 1,
             ),
-            13 => 
+            14 => 
             array (
                 'permission_id' => 14,
                 'role_id' => 1,
             ),
-            14 => 
+            15 => 
             array (
                 'permission_id' => 15,
                 'role_id' => 1,
             ),
-            15 => 
+            16 => 
             array (
                 'permission_id' => 16,
                 'role_id' => 1,
             ),
-            16 => 
+            17 => 
             array (
                 'permission_id' => 17,
                 'role_id' => 1,
             ),
-            17 => 
+            18 => 
             array (
                 'permission_id' => 18,
                 'role_id' => 1,
             ),
-            18 => 
+            19 => 
             array (
                 'permission_id' => 19,
                 'role_id' => 1,
             ),
-            19 => 
+            20 => 
             array (
                 'permission_id' => 20,
                 'role_id' => 1,
             ),
-            20 => 
+            21 => 
             array (
                 'permission_id' => 21,
                 'role_id' => 1,
             ),
-            21 => 
+            22 => 
             array (
                 'permission_id' => 22,
                 'role_id' => 1,
             ),
-            22 => 
+            23 => 
             array (
                 'permission_id' => 23,
                 'role_id' => 1,
             ),
-            23 => 
+            24 => 
             array (
                 'permission_id' => 24,
                 'role_id' => 1,
             ),
-            24 => 
+            25 => 
             array (
                 'permission_id' => 25,
                 'role_id' => 1,
             ),
-            25 => 
-            array (
-                'permission_id' => 26,
-                'role_id' => 1,
-            ),
             26 => 
             array (
-                'permission_id' => 27,
+                'permission_id' => 26,
                 'role_id' => 1,
             ),
             27 => 
             array (
                 'permission_id' => 27,
-                'role_id' => 3,
+                'role_id' => 1,
             ),
             28 => 
             array (
-                'permission_id' => 28,
-                'role_id' => 1,
+                'permission_id' => 27,
+                'role_id' => 3,
             ),
             29 => 
             array (
                 'permission_id' => 28,
-                'role_id' => 3,
+                'role_id' => 1,
             ),
             30 => 
             array (
-                'permission_id' => 29,
-                'role_id' => 1,
+                'permission_id' => 28,
+                'role_id' => 3,
             ),
             31 => 
             array (
                 'permission_id' => 29,
-                'role_id' => 3,
+                'role_id' => 1,
             ),
             32 => 
+            array (
+                'permission_id' => 29,
+                'role_id' => 3,
+            ),
+            33 => 
             array (
                 'permission_id' => 30,
                 'role_id' => 1,
             ),
-            33 => 
-            array (
-                'permission_id' => 31,
-                'role_id' => 1,
-            ),
             34 => 
             array (
-                'permission_id' => 32,
+                'permission_id' => 31,
                 'role_id' => 1,
             ),
             35 => 
             array (
                 'permission_id' => 32,
-                'role_id' => 3,
+                'role_id' => 1,
             ),
             36 => 
             array (
-                'permission_id' => 33,
-                'role_id' => 1,
+                'permission_id' => 32,
+                'role_id' => 2,
             ),
             37 => 
             array (
-                'permission_id' => 33,
+                'permission_id' => 32,
                 'role_id' => 3,
             ),
             38 => 
             array (
-                'permission_id' => 34,
+                'permission_id' => 33,
                 'role_id' => 1,
             ),
             39 => 
             array (
-                'permission_id' => 34,
-                'role_id' => 3,
+                'permission_id' => 33,
+                'role_id' => 2,
             ),
             40 => 
             array (
-                'permission_id' => 35,
-                'role_id' => 1,
+                'permission_id' => 33,
+                'role_id' => 3,
             ),
             41 => 
             array (
-                'permission_id' => 35,
-                'role_id' => 3,
+                'permission_id' => 34,
+                'role_id' => 1,
             ),
             42 => 
             array (
-                'permission_id' => 36,
-                'role_id' => 1,
+                'permission_id' => 34,
+                'role_id' => 2,
             ),
             43 => 
             array (
-                'permission_id' => 36,
+                'permission_id' => 34,
                 'role_id' => 3,
             ),
             44 => 
             array (
-                'permission_id' => 37,
+                'permission_id' => 35,
                 'role_id' => 1,
             ),
             45 => 
             array (
-                'permission_id' => 37,
+                'permission_id' => 35,
                 'role_id' => 3,
             ),
             46 => 
             array (
-                'permission_id' => 38,
+                'permission_id' => 36,
                 'role_id' => 1,
             ),
             47 => 
             array (
-                'permission_id' => 38,
+                'permission_id' => 36,
                 'role_id' => 3,
             ),
             48 => 
             array (
-                'permission_id' => 39,
+                'permission_id' => 37,
                 'role_id' => 1,
             ),
             49 => 
             array (
-                'permission_id' => 39,
+                'permission_id' => 37,
                 'role_id' => 3,
             ),
             50 => 
             array (
-                'permission_id' => 40,
+                'permission_id' => 38,
                 'role_id' => 1,
             ),
             51 => 
             array (
-                'permission_id' => 40,
+                'permission_id' => 38,
                 'role_id' => 3,
             ),
             52 => 
             array (
-                'permission_id' => 41,
+                'permission_id' => 39,
                 'role_id' => 1,
             ),
             53 => 
             array (
-                'permission_id' => 42,
-                'role_id' => 1,
+                'permission_id' => 39,
+                'role_id' => 3,
             ),
             54 => 
             array (
-                'permission_id' => 42,
-                'role_id' => 3,
+                'permission_id' => 40,
+                'role_id' => 1,
             ),
             55 => 
             array (
-                'permission_id' => 43,
-                'role_id' => 1,
+                'permission_id' => 40,
+                'role_id' => 3,
             ),
             56 => 
             array (
-                'permission_id' => 43,
-                'role_id' => 3,
+                'permission_id' => 41,
+                'role_id' => 1,
             ),
             57 => 
             array (
-                'permission_id' => 44,
-                'role_id' => 1,
+                'permission_id' => 41,
+                'role_id' => 3,
             ),
             58 => 
             array (
-                'permission_id' => 44,
-                'role_id' => 3,
+                'permission_id' => 42,
+                'role_id' => 1,
             ),
             59 => 
             array (
-                'permission_id' => 45,
-                'role_id' => 1,
+                'permission_id' => 42,
+                'role_id' => 2,
             ),
             60 => 
             array (
-                'permission_id' => 45,
+                'permission_id' => 42,
                 'role_id' => 3,
             ),
             61 => 
             array (
-                'permission_id' => 46,
+                'permission_id' => 43,
                 'role_id' => 1,
             ),
             62 => 
             array (
-                'permission_id' => 46,
-                'role_id' => 3,
+                'permission_id' => 43,
+                'role_id' => 2,
             ),
             63 => 
             array (
-                'permission_id' => 57,
-                'role_id' => 1,
+                'permission_id' => 43,
+                'role_id' => 3,
             ),
             64 => 
             array (
-                'permission_id' => 57,
-                'role_id' => 3,
+                'permission_id' => 44,
+                'role_id' => 1,
             ),
             65 => 
             array (
-                'permission_id' => 58,
-                'role_id' => 1,
+                'permission_id' => 44,
+                'role_id' => 2,
             ),
             66 => 
             array (
-                'permission_id' => 58,
+                'permission_id' => 44,
                 'role_id' => 3,
             ),
             67 => 
             array (
-                'permission_id' => 59,
+                'permission_id' => 45,
                 'role_id' => 1,
             ),
             68 => 
             array (
-                'permission_id' => 59,
-                'role_id' => 3,
+                'permission_id' => 45,
+                'role_id' => 2,
             ),
             69 => 
             array (
-                'permission_id' => 60,
-                'role_id' => 1,
+                'permission_id' => 45,
+                'role_id' => 3,
             ),
             70 => 
             array (
-                'permission_id' => 60,
-                'role_id' => 3,
+                'permission_id' => 46,
+                'role_id' => 1,
             ),
             71 => 
             array (
-                'permission_id' => 61,
-                'role_id' => 1,
+                'permission_id' => 46,
+                'role_id' => 2,
             ),
             72 => 
             array (
-                'permission_id' => 61,
+                'permission_id' => 46,
                 'role_id' => 3,
             ),
             73 => 
             array (
-                'permission_id' => 62,
+                'permission_id' => 57,
                 'role_id' => 1,
             ),
             74 => 
             array (
+                'permission_id' => 57,
+                'role_id' => 2,
+            ),
+            75 => 
+            array (
+                'permission_id' => 57,
+                'role_id' => 3,
+            ),
+            76 => 
+            array (
+                'permission_id' => 58,
+                'role_id' => 1,
+            ),
+            77 => 
+            array (
+                'permission_id' => 58,
+                'role_id' => 2,
+            ),
+            78 => 
+            array (
+                'permission_id' => 58,
+                'role_id' => 3,
+            ),
+            79 => 
+            array (
+                'permission_id' => 59,
+                'role_id' => 1,
+            ),
+            80 => 
+            array (
+                'permission_id' => 59,
+                'role_id' => 2,
+            ),
+            81 => 
+            array (
+                'permission_id' => 59,
+                'role_id' => 3,
+            ),
+            82 => 
+            array (
+                'permission_id' => 60,
+                'role_id' => 1,
+            ),
+            83 => 
+            array (
+                'permission_id' => 60,
+                'role_id' => 2,
+            ),
+            84 => 
+            array (
+                'permission_id' => 60,
+                'role_id' => 3,
+            ),
+            85 => 
+            array (
+                'permission_id' => 61,
+                'role_id' => 1,
+            ),
+            86 => 
+            array (
+                'permission_id' => 61,
+                'role_id' => 2,
+            ),
+            87 => 
+            array (
+                'permission_id' => 61,
+                'role_id' => 3,
+            ),
+            88 => 
+            array (
+                'permission_id' => 62,
+                'role_id' => 1,
+            ),
+            89 => 
+            array (
                 'permission_id' => 63,
                 'role_id' => 1,
             ),
-            75 => 
+            90 => 
             array (
                 'permission_id' => 64,
                 'role_id' => 1,
             ),
-            76 => 
+            91 => 
             array (
                 'permission_id' => 65,
                 'role_id' => 1,
             ),
-            77 => 
+            92 => 
             array (
                 'permission_id' => 66,
                 'role_id' => 1,

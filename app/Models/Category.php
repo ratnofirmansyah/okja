@@ -15,8 +15,13 @@ class Category extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'name'
+        'name',
+        'brand_id'
     ];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+
+    public function brand() {
+        return $this->belongsTo('App\Models\Brand');
+    }
 }
