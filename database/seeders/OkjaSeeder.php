@@ -741,7 +741,7 @@ class OkjaSeeder extends Seeder
                 'add' => 1,
                 'delete' => 1,
                 'details' => '{}',
-                'order' => 2,
+                'order' => 3,
             ),
             35 => 
             array (
@@ -757,7 +757,7 @@ class OkjaSeeder extends Seeder
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 3,
+                'order' => 5,
             ),
             36 => 
             array (
@@ -767,13 +767,13 @@ class OkjaSeeder extends Seeder
                 'type' => 'timestamp',
                 'display_name' => 'Updated At',
                 'required' => 0,
-                'browse' => 1,
+                'browse' => 0,
                 'read' => 1,
                 'edit' => 0,
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 4,
+                'order' => 6,
             ),
             37 => 
             array (
@@ -1477,7 +1477,7 @@ class OkjaSeeder extends Seeder
                 'add' => 0,
                 'delete' => 0,
                 'details' => '{}',
-                'order' => 5,
+                'order' => 7,
             ),
             81 => 
             array (
@@ -1494,6 +1494,38 @@ class OkjaSeeder extends Seeder
                 'delete' => 1,
                 'details' => '{"default":"out","options":{"out":"Transaction Out","in":"Transaction In"}}',
                 'order' => 5,
+            ),
+            82 => 
+            array (
+                'id' => 102,
+                'data_type_id' => 9,
+                'field' => 'brand_id',
+                'type' => 'select_dropdown',
+                'display_name' => 'Brand',
+                'required' => 0,
+                'browse' => 1,
+                'read' => 1,
+                'edit' => 1,
+                'add' => 1,
+                'delete' => 1,
+                'details' => '{}',
+                'order' => 4,
+            ),
+            83 => 
+            array (
+                'id' => 103,
+                'data_type_id' => 9,
+                'field' => 'category_belongsto_brand_relationship',
+                'type' => 'relationship',
+                'display_name' => 'Brand Name',
+                'required' => 0,
+                'browse' => 1,
+                'read' => 1,
+                'edit' => 1,
+                'add' => 1,
+                'delete' => 1,
+                'details' => '{"model":"App\\\\Models\\\\Brand","table":"brands","type":"belongsTo","column":"brand_id","key":"id","label":"name","pivot_table":"brands","pivot":"0","taggable":"0"}',
+                'order' => 2,
             ),
         ));
 
