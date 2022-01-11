@@ -154,6 +154,11 @@ table settings {
   group string
 }
 
+table user_roles {
+  user_id bigint [ref: > users.id]
+  role_id bigint [ref: > roles.id]
+}
+
 table user_transaction_histories {
   id bigint [pk, increment]
   product_id bigint [ref: > products.id]
