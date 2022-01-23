@@ -14,6 +14,7 @@ table brands {
 
 table categories {
   id bigint [pk, increment]
+  brand_id bigint [ref: > brands.id]
   name string
   created_at timestamp
   updated_at timestamp
@@ -54,14 +55,13 @@ table data_types {
   updated_at timestamp
 }
 
-table failed_jobs {
+table faqs {
   id bigint [pk, increment]
-  uuid string [unique]
-  connection text
-  queue text
-  payload longtext
-  exception longtext
-  failed_at timestamp
+  question text
+  answer text
+  created_at timestamp
+  updated_at timestamp
+  deleted_at timestamp
 }
 
 table menu_items {
@@ -103,12 +103,6 @@ table outlets {
   created_at timestamp
   updated_at timestamp
   deleted_at timestamp
-}
-
-table password_resets {
-  email string
-  token string
-  created_at timestamp
 }
 
 table permission_role {
@@ -160,51 +154,35 @@ table settings {
   group string
 }
 
-table translations {
-  id int [pk, increment]
-  table_name string
-  column_name string
-  foreign_key integer
-  locale string
-  value text
-  created_at timestamp
-  updated_at timestamp
-}
-
 table user_roles {
   user_id bigint [ref: > users.id]
   role_id bigint [ref: > roles.id]
+}
+
+table user_transaction_histories {
+  id bigint [pk, increment]
+  product_id bigint [ref: > products.id]
+  action string
+  user_id bigint [ref: > users.id]
+  outlet_id bigint [ref: > outlets.id]
+  qty integer
+  note text [null]
+  created_at timestamp
+  updated_at timestamp
+  deleted_at timestamp
 }
 
 table users {
   id bigint [pk, increment]
   role_id bigint [ref: > roles.id]
   brand_id bigint [ref: > brands.id]
+  outlet_id bigint [ref:> outlets.id]
   name string
   email string
   avatar string
   email_verified_at datetime
   password string
-  created_at timestamp
-  updated_at timestamp
-  deleted_at timestamp
-}
-
-table faqs {
-  id bigint [pk, increment]
-  question text
-  answer text
-  created_at timestamp
-  updated_at timestamp
-  deleted_at timestamp
-}
-
-table user_transaction_histories {
-  id bigint [pk, increment]
-  product_id bigint [ref: > products.id]
-  user_id bigint [ref: > users.id]
-  qty integer
-  note text [null]
+  remember_token string
   created_at timestamp
   updated_at timestamp
   deleted_at timestamp
