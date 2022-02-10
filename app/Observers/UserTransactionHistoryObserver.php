@@ -22,7 +22,9 @@ class UserTransactionHistoryObserver
                 $productQty->qty_balance = 0;
             }
         }elseif ($userTransactionHistory->action == 'in') {
-            $productQty->qty_total += $userTransactionHistory->qty;
+            if ($userTransactionHistory->note != 'automatic transaction after add product') {
+                $productQty->qty_total += $userTransactionHistory->qty;
+            }
             $productQty->qty_balance += $userTransactionHistory->qty;
         }
         $productQty->save();
