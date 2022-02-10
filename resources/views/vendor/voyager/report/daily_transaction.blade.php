@@ -16,7 +16,7 @@
                 <div class="panel panel-bordered">
                     <div class="panel-body">
                         <div class="col-md-12">
-                            <form method="get" action="">
+                            <form>
                                 <!-- CSRF TOKEN -->
                                 {{ csrf_field() }}
                                 <div class="form-group">
@@ -54,7 +54,7 @@
             <div class="col-md-12">
                 <div class="panel panel-bordered">
                     <div class="panel-body">
-                        <div class="col-md-12">
+                        <div class="col-md-12 chartreport">
                             <canvas id="myChart" style="max-height: 400px;"></canvas>
                         </div>
                     </div>
@@ -69,52 +69,76 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script>
-        var labels = @json($labels);
-        console.log();
-        var dataTransactions = @json($transactions);
-        var dataSet = [];
+        var baseurl = "{{url('')}}";
+        $("form").submit(function(){
+            event.preventDefault();
+            $("canvas#myChart").remove();
+            $("div.chartreport").append('<canvas id="myChart" class="animated fadeIn" style="max-height: 400px;"></canvas>');
+            getReport();
+        });
+        function getReport() {
+            var token = $('input[name="_token"]').val();
+            var daterange = $('input[name="daterange"]').val();
+            var outlet_id = $('select[name="outlet_id"]').val();
+            var transaction_type = $('select[name="type"]').val();
+            $.ajax({
+                type: 'GET',
+                url: baseurl+'/reports/daily-transactions-data?_token='+token+'&daterange='+daterange+'&outlet_id='+outlet_id+'&type='+transaction_type,
+                success: function (result) {
+                    var labels = result.labels;
+                    var dataTransactions = result.transactions;
+                    var dataSet = [];
 
-        for (var i=0; i<dataTransactions.length ; i++) {
-            // -- random collor --
-                const r = Math.round (Math.random () * 255);
-                const g = Math.round (Math.random () * 255);
-                const b = Math.round (Math.random () * 255);
+                    for (var i=0; i<dataTransactions.length ; i++) {
+                        const r = Math.round (Math.random () * 255);
+                        const g = Math.round (Math.random () * 255);
+                        const b = Math.round (Math.random () * 255);
 
-            var data = {
-                axis: 'y',
-                label: dataTransactions[i].label,
-                data: dataTransactions[i].data,
-                fill: false,
-                backgroundColor: [
-                    `rgba(${r}, ${g}, ${b}, 0.5)`,
-                    `rgba(${r}, ${g}, ${b}, 0.5)`
-                ],
-                stack: 'Stack 0',
-                borderWidth: 1
-            };
-            dataSet.push(data);
+                        var data = {
+                            axis: 'y',
+                            label: dataTransactions[i].label,
+                            data: dataTransactions[i].data,
+                            fill: false,
+                            backgroundColor: [
+                                `rgba(${r}, ${g}, ${b}, 0.5)`,
+                                `rgba(${r}, ${g}, ${b}, 0.5)`
+                            ],
+                            stack: 'Stack 0',
+                            borderWidth: 1
+                        };
+                        dataSet.push(data);
+                    }
+
+                    const ctx = $('#myChart');
+                    const myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: dataSet
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    stacked: true
+                                },
+                                x: {
+                                    stacked: true,
+                                }
+                            }
+                        }
+                    });
+                },
+                error: function (argument) {
+                    alert('Something was wrong! Please contact administrator.');
+                }
+            });
         }
 
-        const ctx = $('#myChart');
-        const myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: dataSet
-            },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        stacked: true
-                    },
-                    x: {
-                        stacked: true,
-                    }
-                }
-            }
+        $(document).ready(function () {
+            getReport();
         });
 
         $('.daterange').daterangepicker({

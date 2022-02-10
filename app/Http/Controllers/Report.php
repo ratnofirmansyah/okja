@@ -13,7 +13,7 @@ use App\Models\Outlet;
 
 class Report extends Controller
 {
-    public function dailyTransaction(Request $request)
+    public function dailyTransactionPage(Request $request)
     {
         $user = Auth::user();
         if ($user->role_id == 3) {
@@ -24,6 +24,16 @@ class Report extends Controller
             $data['outlets'] = Outlet::all();
         }
 
+        $data['type'] = 'out';
+        $data['outlet_id'] = 'all';
+        $data['daterangeori'] = date('m/d/Y', strtotime('-30 days')).' - '.date('m/d/Y');
+
+        return Voyager::view('vendor.voyager.report.daily_transaction', $data);
+    }
+
+    public function dailyTransactionData(Request $request)
+    {
+        $user = Auth::user();
         $data['type'] = $request->get('type', 'out');
         $data['outlet_id'] = $request->get('outlet_id', 'all');
         $daterange = explode(' - ', $request->get('daterange', date('Y-m-d', strtotime('-30 days')).' - '.date('Y-m-d')));
@@ -106,10 +116,10 @@ class Report extends Controller
             }
         }
 
-        $data['labels'] = $transactionDaily->pluck('date')->toArray();
-        $data['transactions'] = $dataTransactions;
+        $return['labels'] = $transactionDaily->pluck('date')->toArray();
+        $return['transactions'] = $dataTransactions;
 
-        return Voyager::view('vendor.voyager.report.daily_transaction', $data);
+        return $return;
     }
 
     public function monthlyTransaction(Request $request)
