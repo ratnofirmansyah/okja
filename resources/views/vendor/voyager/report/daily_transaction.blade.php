@@ -16,7 +16,7 @@
                 <div class="panel panel-bordered">
                     <div class="panel-body">
                         <div class="col-md-12">
-                            <form>
+                            <form id="search-report">
                                 <!-- CSRF TOKEN -->
                                 {{ csrf_field() }}
                                 <div class="form-group">
@@ -70,7 +70,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script>
         var baseurl = "{{url('')}}";
-        $("form").submit(function(){
+        $("form#search-report").submit(function(){
             event.preventDefault();
             $("canvas#myChart").remove();
             $("div.chartreport").append('<canvas id="myChart" class="animated fadeIn" style="max-height: 400px;"></canvas>');
