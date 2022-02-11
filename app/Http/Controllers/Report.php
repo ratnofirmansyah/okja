@@ -34,6 +34,13 @@ class Report extends Controller
     public function dailyTransactionData(Request $request)
     {
         $user = Auth::user();
+        if ($user->role_id == 3) {
+            $data['outlets'] = Outlet::where('brand_id', $user->brand_id)->get();
+        } elseif ($user->role_id == 2){
+            $data['outlets'] = Outlet::where('id', $user->outlet_id)->get();
+        }else{
+            $data['outlets'] = Outlet::all();
+        }
         $data['type'] = $request->get('type', 'out');
         $data['outlet_id'] = $request->get('outlet_id', 'all');
         $daterange = explode(' - ', $request->get('daterange', date('Y-m-d', strtotime('-30 days')).' - '.date('Y-m-d')));
